@@ -1,9 +1,9 @@
-import { colorModeContext, useMode } from "./Theme";
+import { ColorModeContext, useMode } from "./Theme";
 import { ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./Telas/global/navbar";
-import Sidebar from "/Telas/global/sidebar"
-import Dashboard from "/Telas/global/dashboard";
+import Navbar from "./Telas/global/topbar";
+import Sidebar from "./Telas/global/leftbar";
+import Dashboard from "./Telas/Dashboard/index"
 // import Team from "/Telas/global/team";
 // import Invoice from "/Telas/global/invoice";
 // import Contacts from "/Telas/global/contacts";
@@ -19,7 +19,7 @@ function App() {
   const [theme, colorMode] = useMode();
 
   return (
-  <colorModeContext.Provider value={colorMode}>
+  <ColorModeContext.Provider value={colorMode}>
     <ThemeProvider theme={theme}>
       <div className="app">
       <Sidebar />
@@ -41,7 +41,7 @@ function App() {
         </main>
       </div>
     </ThemeProvider>
-  </colorModeContext.Provider>
+  </ColorModeContext.Provider>
   )
 }
 
