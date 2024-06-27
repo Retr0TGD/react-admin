@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -7,6 +7,7 @@ import listPlugin from "@fullcalendar/list";
 import { Box, List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
+import { format } from 'date-fns';
 
 const Calendar = () => {
   const theme = useTheme();
@@ -55,11 +56,7 @@ const Calendar = () => {
                   primary={event.title}
                   secondary={
                     <Typography>
-                      {formatDate(event.start, {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
+                      {format(new Date(event.start), 'yyyy-MM-dd')}
                     </Typography>
                   }
                 />
@@ -68,7 +65,9 @@ const Calendar = () => {
           </List>
         </Box>
         <Box flex="1 1 100%" ml="15px">
-          <FullCalendar height="75vh" plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
+          <FullCalendar
+            height="75vh"
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
             headerToolbar={{ left: "prev,next today", center: "title", right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth" }}
             initialView="dayGridMonth"
             editable={true}
